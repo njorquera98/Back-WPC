@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ParejasService } from './parejas.service';
 import { CreateParejaDto } from './dto/create-pareja.dto';
 import { UpdateParejaDto } from './dto/update-pareja.dto';
+import { Pareja } from './entities/pareja.entity';
 
 @Controller('parejas')
 export class ParejasController {
@@ -21,7 +22,10 @@ export class ParejasController {
   findOne(@Param('id') id: number) {
     return this.parejasService.findOne(id);
   }
-
+  @Get('americano/:americanoId')
+  findByAmericanoId(@Param('americanoId') americanoId: string): Promise<Pareja[]> {
+    return this.parejasService.findByAmericanoId(americanoId);
+  }
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateParejaDto: UpdateParejaDto) {
     return this.parejasService.update(id, updateParejaDto);

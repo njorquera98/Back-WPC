@@ -30,6 +30,21 @@ export class ParejasService {
     return this.parejaRepository.save(pareja);
   }
 
+  async findByAmericanoId(americanoId: string): Promise<Pareja[]> {
+    const id = parseInt(americanoId, 10);
+    if (isNaN(id)) {
+      throw new Error('Invalid americano ID');
+    }
+    return this.parejaRepository.find({
+      where: {
+        americano: {
+          id: id,
+        },
+      },
+      relations: ['americano'],
+    });
+  }
+
   findAll() {
     return `This action returns all parejas`;
   }
