@@ -9,5 +9,6 @@ import { Americano } from 'src/americano/entities/americano.entity';
   imports: [TypeOrmModule.forFeature([Pareja, Americano])],
   controllers: [ParejasController],
   providers: [ParejasService],
+  exports: [ParejasService],
 })
 export class ParejasModule { }

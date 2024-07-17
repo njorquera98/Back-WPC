@@ -23,7 +23,7 @@ export class AmericanoService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} americano`;
+    return this.americanoRepository.findOneBy({ id });
   }
 
   update(id: number, updateAmericanoDto: UpdateAmericanoDto) {

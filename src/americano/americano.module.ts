@@ -8,5 +8,6 @@ import { Americano } from './entities/americano.entity';
   imports: [TypeOrmModule.forFeature([Americano])],
   controllers: [AmericanoController],
   providers: [AmericanoService],
+  exports: [AmericanoService],
 })
 export class AmericanoModule { }

@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { ParejasService } from './parejas.service';
 import { CreateParejaDto } from './dto/create-pareja.dto';
-import { UpdateParejaDto } from './dto/update-pareja.dto';
 import { Pareja } from './entities/pareja.entity';
 
 @Controller('parejas')
@@ -9,30 +8,36 @@ export class ParejasController {
   constructor(private readonly parejasService: ParejasService) { }
 
   @Post()
-  create(@Body() createParejaDto: CreateParejaDto) {
+  async create(@Body() createParejaDto: CreateParejaDto): Promise<Pareja> {
     return this.parejasService.create(createParejaDto);
   }
 
+  @Get('americano/:americanoId')
+  async findByAmericanoId(@Param('americanoId') americanoId: string): Promise<Pareja[]> {
+    return this.parejasService.findAllByAmericanoId(americanoId);
+  }
+
   @Get()
-  findAll() {
+  async findAll(): Promise<Pareja[]> {
     return this.parejasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.parejasService.findOne(id);
+  async findOne(@Param('id') id: number): Promise<Pareja> {
+    const pareja = await this.parejasService.findOne(id);
+    if (!pareja) {
+      throw new NotFoundException('Pareja not found');
+    }
+    return pareja;
   }
-  @Get('americano/:americanoId')
-  findByAmericanoId(@Param('americanoId') americanoId: string): Promise<Pareja[]> {
-    return this.parejasService.findByAmericanoId(americanoId);
-  }
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateParejaDto: UpdateParejaDto) {
+
+  @Post(':id')
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateParejaDto: CreateParejaDto): Promise<Pareja> {
     return this.parejasService.update(id, updateParejaDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: number) {
+  @Post(':id/delete')
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.parejasService.remove(id);
   }
 }

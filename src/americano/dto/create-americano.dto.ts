@@ -1,9 +1,12 @@
-import { IsDateString, IsString } from "class-validator";
+import { IsDateString, IsInt, IsString } from "class-validator";
 
 export class CreateAmericanoDto {
   @IsString()
   nombre: string;
 
   @IsDateString()
-  fecha: Date;
+  fechaInicio: Date;
+
+  @IsInt()
+  cantidadGrupos: number;
 }
