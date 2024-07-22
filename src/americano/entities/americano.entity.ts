@@ -1,3 +1,4 @@
+import { CanchaDisponible } from "src/cancha-disponible/entities/cancha-disponible.entity";
 import { Grupo } from "src/grupo/entities/grupo.entity";
 import { Pareja } from "src/parejas/entities/pareja.entity";
 import { Partido } from "src/partidos/entities/partido.entity";
@@ -26,4 +27,7 @@ export class Americano {
 
   @OneToMany(() => Partido, partido => partido.americano)
   partidos: Partido[];
+
+  @OneToMany(() => CanchaDisponible, canchaDisponible => canchaDisponible.americano)
+  canchaDisponible: CanchaDisponible[];
 }

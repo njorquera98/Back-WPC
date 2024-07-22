@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreateParejaDto {
   @IsNotEmpty()
@@ -8,4 +8,8 @@ export class CreateParejaDto {
   @IsNotEmpty()
   @IsInt()
   americano_fk: number;
+
+  @IsOptional()
+  @IsInt()
+  grupo_fk?: number;
 }

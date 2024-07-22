@@ -1,34 +1,40 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { GrupoService } from './grupo.service';
 import { CreateGrupoDto } from './dto/create-grupo.dto';
 import { UpdateGrupoDto } from './dto/update-grupo.dto';
+import { Grupo } from './entities/grupo.entity';
 
-@Controller('grupo')
+@Controller('grupos')
 export class GrupoController {
-  constructor(private readonly grupoService: GrupoService) {}
+  constructor(private readonly grupoService: GrupoService) { }
 
   @Post()
-  create(@Body() createGrupoDto: CreateGrupoDto) {
+  create(@Body() createGrupoDto: CreateGrupoDto): Promise<Grupo> {
     return this.grupoService.create(createGrupoDto);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<Grupo[]> {
     return this.grupoService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.grupoService.findOne(+id);
+  async findOne(@Param('id') id: number): Promise<Grupo> {
+    return this.grupoService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGrupoDto: UpdateGrupoDto) {
-    return this.grupoService.update(+id, updateGrupoDto);
+  @Get('americano/:americanoId')
+  findByAmericano(@Param('americanoId') americanoId: number): Promise<Grupo[]> {
+    return this.grupoService.findByAmericano(americanoId);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() updateGrupoDto: UpdateGrupoDto): Promise<Grupo> {
+    return this.grupoService.update(id, updateGrupoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.grupoService.remove(+id);
+  async remove(@Param('id') id: number): Promise<void> {
+    return this.grupoService.remove(id);
   }
 }

@@ -10,6 +10,7 @@ import { PartidosModule } from './partidos/partidos.module';
 import { GrupoModule } from './grupo/grupo.module';
 import { AmericanoModule } from './americano/americano.module';
 import { FaseModule } from './fase/fase.module';
+import { CanchaDisponibleModule } from './cancha-disponible/cancha-disponible.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { FaseModule } from './fase/fase.module';
     GrupoModule,
     AmericanoModule,
     FaseModule,
+    CanchaDisponibleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

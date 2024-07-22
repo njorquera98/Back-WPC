@@ -1,0 +1,42 @@
+POST http://localhost:3000/americano
+Content-Type: application/json
+{
+    "nombre": "Test",
+    "fecha": "2024-07-14 02:03:50",
+    "cantidadGrupos": 2
+}
+
+
+GET http://localhost:3000/americano/3
+
+GET http://localhost:3000/parejas/americano/1
+
+GET http://localhost:3000/partidos/5
+
+
+POST http://localhost:3000/partidos
+Content-Type: application/json
+{
+  "resultadoPareja1": 0,
+  "resultadoPareja2": 0,
+  "fecha": "2024-07-16T09:15:00.000Z",
+  "pareja1_fk": 19,
+  "pareja2_fk": 20,
+  "grupo_fk": 1,
+  "americano_fk": 4,
+  "cancha_fk": 1
+}
+
+
+POST http://localhost:3000/grupos
+Content-Type: application/json
+{
+  "nombreGrupo": "Grupo 1",
+  "americano_fk": 1
+}
+
+GET http://localhost:3000/grupos
+
+GET http://localhost:3000/grupos/10
+
+

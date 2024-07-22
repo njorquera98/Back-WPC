@@ -1,3 +1,4 @@
+import { CanchaDisponible } from "src/cancha-disponible/entities/cancha-disponible.entity";
 import { Partido } from "src/partidos/entities/partido.entity";
 import { Column, Entity, OneToMany } from "typeorm";
 
@@ -12,4 +13,8 @@ export class Cancha {
 
   @OneToMany(() => Partido, partido => partido.cancha)
   partido: Partido[];
-} 
+
+  @OneToMany(() => CanchaDisponible, canchaDisponible => canchaDisponible.cancha)
+  canchaDisponible: CanchaDisponible[];
+
+}

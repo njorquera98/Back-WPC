@@ -17,7 +17,7 @@ export class Grupo {
   @OneToMany(() => Partido, partido => partido.grupo)
   partidos: Partido[];
 
-  @ManyToOne(() => Americano, americano => americano.parejas)
+  @ManyToOne(() => Americano, americano => americano.grupos)
   @JoinColumn({ name: 'americano_fk' })
   americano: Americano;
 }
