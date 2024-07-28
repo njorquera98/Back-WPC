@@ -43,7 +43,10 @@ export class PartidosController {
   findOne(@Param('id') id: number) {
     return this.partidosService.findOne(id);
   }
-
+  @Get('/americano/:id')
+  findByAmericano(@Param('id') id: number) {
+    return this.partidosService.findByAmericano(id);
+  }
   @Patch(':id')
   update(@Param('id') id: number, @Body() updatePartidoDto: UpdatePartidoDto) {
     return this.partidosService.update(id, updatePartidoDto);

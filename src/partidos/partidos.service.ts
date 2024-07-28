@@ -26,7 +26,12 @@ export class PartidosService {
       relations: ['pareja1', 'pareja2', 'grupo', 'americano', 'cancha']
     });
   }
-
+  findByAmericano(americanoId: number) {
+    return this.partidoRepository.find({
+      where: { americano: { id: americanoId } },
+      relations: ['pareja1', 'pareja2', 'grupo', 'americano', 'cancha']
+    });
+  }
   update(id: number, updatePartidoDto: UpdatePartidoDto) {
     return this.partidoRepository.update(id, updatePartidoDto);
   }
