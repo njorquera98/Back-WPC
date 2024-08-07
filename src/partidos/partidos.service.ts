@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePartidoDto } from './dto/create-partido.dto';
 import { UpdatePartidoDto } from './dto/update-partido.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Partido } from './entities/partido.entity';
