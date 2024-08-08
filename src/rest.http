@@ -9,7 +9,7 @@ Content-Type: application/json
 
 GET http://localhost:3000/americano/3
 
-GET http://localhost:3000/parejas/1
+GET http://localhost:3000/parejas/
 
 GET http://localhost:3000/partidos/5
 
@@ -35,7 +35,9 @@ Content-Type: application/json
   "americano_fk": 1
 }
 
-GET http://localhost:3000/grupos
+GET http://localhost:3000/grupos/americano/1
 
-GET http://localhost:3000/grupos/americano/3
+GET http://localhost:3000/grupos/parejas/americano
+
+GET http://localhost:3000/partidos/americano/1
 

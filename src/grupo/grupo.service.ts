@@ -5,6 +5,7 @@ import { Grupo } from './entities/grupo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Americano } from 'src/americano/entities/americano.entity';
+import { Pareja } from 'src/parejas/entities/pareja.entity';
 
 @Injectable()
 export class GrupoService {
@@ -12,8 +13,12 @@ export class GrupoService {
   constructor(
     @InjectRepository(Grupo)
     private readonly grupoRepository: Repository<Grupo>,
+
     @InjectRepository(Americano)
     private readonly americanoRepository: Repository<Americano>,
+
+    @InjectRepository(Pareja)
+    private readonly parejaRepository: Repository<Pareja>
   ) { }
 
   async create(createGrupoDto: CreateGrupoDto): Promise<Grupo> {
@@ -65,6 +70,16 @@ export class GrupoService {
     });
     console.log('Grupos encontrados:', grupos);
     return grupos;
+  }
+
+  async findParejasByAmericano(americanoId: number): Promise<Pareja[]> {
+    console.log(`Buscando parejas para americano con ID: ${americanoId}`);
+    const parejas = await this.parejaRepository.find({
+      where: { americano: { id: americanoId } },
+      relations: ['grupo']
+    });
+    console.log('Parejas encontradas:', parejas);
+    return parejas;
   }
 }
 

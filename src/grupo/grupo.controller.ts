@@ -3,6 +3,7 @@ import { GrupoService } from './grupo.service';
 import { CreateGrupoDto } from './dto/create-grupo.dto';
 import { UpdateGrupoDto } from './dto/update-grupo.dto';
 import { Grupo } from './entities/grupo.entity';
+import { Pareja } from 'src/parejas/entities/pareja.entity';
 
 @Controller('grupos')
 export class GrupoController {
@@ -26,6 +27,11 @@ export class GrupoController {
   @Get('americano/:americanoId')
   findByAmericano(@Param('americanoId') americanoId: number): Promise<Grupo[]> {
     return this.grupoService.findByAmericano(americanoId);
+  }
+
+  @Get('parejas/americano/:americanoId')
+  findParejasByAmericano(@Param('americanoId') americanoId: number): Promise<Pareja[]> {
+    return this.grupoService.findParejasByAmericano(americanoId);
   }
 
   @Put(':id')
