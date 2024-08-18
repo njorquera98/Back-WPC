@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdatePartidoDto } from './dto/update-partido.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Partido } from './entities/partido.entity';
@@ -31,8 +31,14 @@ export class PartidosService {
       relations: ['pareja1', 'pareja2', 'grupo', 'americano', 'cancha']
     });
   }
-  update(id: number, updatePartidoDto: UpdatePartidoDto) {
-    return this.partidoRepository.update(id, updatePartidoDto);
+  async update(id: number, updatePartidoDto: UpdatePartidoDto): Promise<Partido> {
+    const partido = await this.partidoRepository.findOne({ where: { id } });
+    if (!partido) {
+      throw new NotFoundException(`Partido con ID ${id} no encontrado`);
+    }
+
+    const updatedPartido = Object.assign(partido, updatePartidoDto);
+    return this.partidoRepository.save(updatedPartido);
   }
 
   remove(id: number) {
