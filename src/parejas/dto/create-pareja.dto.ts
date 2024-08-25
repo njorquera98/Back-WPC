@@ -12,4 +12,8 @@ export class CreateParejaDto {
   @IsOptional()
   @IsInt()
   grupo_fk?: number;
+
+  @IsOptional()
+  @IsInt()
+  puntos?: number;
 }

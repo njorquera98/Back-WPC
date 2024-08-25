@@ -12,6 +12,9 @@ export class Pareja {
   @Column()
   nombre_pareja: string;
 
+  @Column()
+  puntos: number;
+
   @ManyToOne(() => Americano, americano => americano.parejas)
   @JoinColumn({ name: 'americano_fk' })
   americano: Americano;

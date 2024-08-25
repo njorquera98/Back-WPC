@@ -39,5 +39,14 @@ GET http://localhost:3000/grupos/americano/1
 
 GET http://localhost:3000/grupos/parejas/americano
 
-GET http://localhost:3000/partidos/americano/1
+GET http://localhost:3000/partidos/21
+
+PATCH http://localhost:3000/partidos/21
+Content-Type: application/json
+
+{
+  "resultadoPareja1": 4,
+  "resultadoPareja2": 4
+}
+
 
