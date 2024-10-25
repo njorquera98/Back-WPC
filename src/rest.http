@@ -9,8 +9,7 @@ Content-Type: application/json
 
 GET http://localhost:3000/americano/3
 
-GET http://localhost:3000/parejas/
-
+GET http://localhost:3000/parejas/americano/1
 GET http://localhost:3000/partidos/5
 
 
